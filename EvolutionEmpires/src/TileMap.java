@@ -1,23 +1,32 @@
-public class Map {
-    private Tile[][] grid;
+public class TileMap {
+    private TileType[][] grid;
     private int width;
     private int height;
     private int size;
     private String name;
 
-    public Map(int width, int height, String name) {
+    public TileMap(int width, int height, String name) {
         this.width = width;
         this.height = height;
         this.name = name;
         this.size = width * height;
-        this.grid = new Tile[width][height];
+        this.grid = new TileType[width][height];
+    }
+    public TileMap copy() {
+        return new TileMap(this.getWidth(), this.getHeight(), this.getName());
+    }
+    public TileType getTileAt(int x, int y) {
+        return grid[x][y];
+    }
+    public void setTileAt(int x, int y, TileType tile) {
+        this.grid[x][y] = tile;
     }
 
-    public Tile[][] getGrid() {
+    public TileType[][] getGrid() {
         return grid;
     }
 
-    public void setGrid(Tile[][] grid) {
+    public void setGrid(TileType[][] grid) {
         this.grid = grid;
     }
 
