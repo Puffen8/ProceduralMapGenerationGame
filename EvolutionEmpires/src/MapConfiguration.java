@@ -4,9 +4,9 @@ import java.util.Map;
 public class MapConfiguration {
     private Map<TileType, Integer> titleDistribution = new HashMap<>();
     private int iterations;
-    private GenerationAlgo mapGeneratorAlgo;
+    private GenerationAlgos mapGeneratorAlgo;
 
-    public MapConfiguration(Map<TileType, Integer> titleDistribution, int iterations, GenerationAlgo mapGeneratorAlgo) {
+    public MapConfiguration(Map<TileType, Integer> titleDistribution, int iterations, GenerationAlgos mapGeneratorAlgo) {
         this.titleDistribution = titleDistribution;
         this.iterations = iterations;
         this.mapGeneratorAlgo = mapGeneratorAlgo;
@@ -40,11 +40,48 @@ public class MapConfiguration {
             put(TileType.WATER, 60);
         }};
     }
+    public static Map<TileType, Integer> createIslands2TileDistributionMap() {
+        return new HashMap<>() {{
+            put(TileType.GRASS, 47);
+            put(TileType.WATER, 53);
+        }};
+    }
+    public static Map<TileType, Integer> createIslands3TileDistributionMap() {
+        return new HashMap<>() {{
+            put(TileType.GRASS, 46);
+            put(TileType.WATER, 54);
+        }};
+    }
+    public static Map<TileType, Integer> createMainIslandWaterTileDistributionMap() {
+        return new HashMap<>() {{
+            put(TileType.GRASS, 60);
+            put(TileType.WATER, 40);
+        }};
+    }
+
+    public static Map<TileType, Integer> createSmallIslandsileDistributionMap() {
+        return new HashMap<>() {{
+            put(TileType.GRASS, 45);
+            put(TileType.WATER, 55);
+        }};
+    }
+    public static Map<TileType, Integer> createMainIsland2TileDistributionMap() {
+        return new HashMap<>() {{
+            put(TileType.GRASS, 49);
+            put(TileType.WATER, 51);
+        }};
+    }
 
     public static Map<TileType, Integer> createMainLandTileDistributionMap() {
         return new HashMap<>() {{
             put(TileType.GRASS, 100);
             put(TileType.WATER, 0);
+        }};
+    }
+    public static Map<TileType, Integer> testTileDistributionMap() {
+        return new HashMap<>() {{
+            put(TileType.GRASS, 50);
+            put(TileType.WATER, 50);
         }};
     }
 
@@ -64,11 +101,11 @@ public class MapConfiguration {
         this.iterations = iterations;
     }
 
-    public GenerationAlgo getMapGeneratorAlgo() {
+    public GenerationAlgos getMapGeneratorAlgo() {
         return mapGeneratorAlgo;
     }
 
-    public void setMapGeneratorAlgo(GenerationAlgo mapGeneratorAlgo) {
+    public void setMapGeneratorAlgo(GenerationAlgos mapGeneratorAlgo) {
         this.mapGeneratorAlgo = mapGeneratorAlgo;
     }
 }

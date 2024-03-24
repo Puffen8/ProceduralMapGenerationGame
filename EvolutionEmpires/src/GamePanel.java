@@ -47,20 +47,49 @@ public class GamePanel extends JPanel {
         centerPanel.setBackground(Color.BLACK);
         centerPanel.setLayout(null);
 
-        createMapPanel();
+//        createMapPanel();
+        mapPanel = new MapPanel(tileMap);
         centerPanel.add(mapPanel);
-
-        showMap();
-//        showMapBW();
-
     }
 
-    public void createMapPanel() {
-        GridLayout gridLayout = new GridLayout(tileMap.getWidth(), tileMap.getHeight());
-        mapPanel.setLayout(gridLayout);
-        mapPanel.setBounds(300, 0, 800, 800);
-        mapPanel.setBackground(Color.BLACK);
-    }
+//    @Override
+//    protected void paintComponent(Graphics g) {
+//        super.paintComponent(g);
+//        int tileSize = 10; // Adjust the size of each square as needed
+//        int width = tileMap.getWidth();
+//        int height = tileMap.getHeight();
+//        System.out.println("Drawing Map");
+//        for (int x = 0; x < width; x++) {
+//            for (int y = 0; y < height; y++) {
+//                TileType tile = tileMap.getTileAt(x, y);
+//                System.out.println(x + " " + y + " " + tile.getColor());
+//                g.setColor(tile.getColor());
+//                g.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
+//            }
+//        }
+//
+////        for (int i = 0; i < GRID_SIZE; i++) {
+////            for (int j = 0; j < GRID_SIZE; j++) {
+////                g.setColor(gridColors[i][j]);
+////                g.fillRect(i * CELL_SIZE, j * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+////            }
+////        }
+//    }
+//
+//    @Override
+//    public Dimension getPreferredSize() {
+//        int tileSize = 10; // Adjust the size of each mapTile as needed
+//        int width = tileMap.getWidth();
+//        int height = tileMap.getHeight();
+//        return new Dimension(width * tileSize, height * tileSize);
+//    }
+
+//    public void createMapPanel() {
+//        GridLayout gridLayout = new GridLayout(tileMap.getWidth(), tileMap.getHeight());
+//        mapPanel.setLayout(gridLayout);
+//        mapPanel.setBounds(300, 0, 800, 800);
+//        mapPanel.setBackground(Color.BLACK);
+//    }
 
 
 
@@ -90,5 +119,69 @@ public class GamePanel extends JPanel {
                 mapPanel.add(tilePanel);
             }
         }
+    }
+
+    public TileMap getTileMap() {
+        return tileMap;
+    }
+
+    public void setTileMap(TileMap tileMap) {
+        this.tileMap = tileMap;
+    }
+
+    public FloatMap getFloatMap() {
+        return floatMap;
+    }
+
+    public void setFloatMap(FloatMap floatMap) {
+        this.floatMap = floatMap;
+    }
+
+    public JPanel getNorthPanel() {
+        return northPanel;
+    }
+
+    public void setNorthPanel(JPanel northPanel) {
+        this.northPanel = northPanel;
+    }
+
+    public JPanel getSouthPanel() {
+        return southPanel;
+    }
+
+    public void setSouthPanel(JPanel southPanel) {
+        this.southPanel = southPanel;
+    }
+
+    public JPanel getWestPanel() {
+        return westPanel;
+    }
+
+    public void setWestPanel(JPanel westPanel) {
+        this.westPanel = westPanel;
+    }
+
+    public JPanel getEastPanel() {
+        return eastPanel;
+    }
+
+    public void setEastPanel(JPanel eastPanel) {
+        this.eastPanel = eastPanel;
+    }
+
+    public JPanel getCenterPanel() {
+        return centerPanel;
+    }
+
+    public void setCenterPanel(JPanel centerPanel) {
+        this.centerPanel = centerPanel;
+    }
+
+    public JPanel getMapPanel() {
+        return mapPanel;
+    }
+
+    public void setMapPanel(JPanel mapPanel) {
+        this.mapPanel = mapPanel;
     }
 }

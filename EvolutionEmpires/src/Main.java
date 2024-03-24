@@ -1,17 +1,13 @@
 import javax.swing.*;
 
+import static java.lang.Thread.sleep;
+
 public class Main {
     public static void main(String[] args) {
-//        FloatMap floatMap = new FloatMap(64, 64, "TestMap64x64");
-//        MapGenerator mapGenerator = new MapGenerator();
-//        TileMap tileMap = mapGenerator.generateRandomMap(floatMap);
-//        TileMap finalTileMap = tileMap;
+        GameController gameController = new GameController();
+        gameController.initGame();
         // Start the GraphicThread
-        SwingUtilities.invokeLater(() -> {
-            // Create mainFrame
-            GameFrame frame = new GameFrame();
-        });
-
+        // TODO: Gather game settings from user in startPanel and then create the gameManager and pass all of the game settings
 
     }
 

@@ -19,35 +19,10 @@ public class GameFrame extends JFrame implements WindowListener {
         mainPanel.setLayout(cardLayout);
         add(mainPanel);
 
+
         createALlPanels();
 
-        cardLayout.show(mainPanel, "gamePanel");
-
-
-//
-//        getContentPane().setLayout(null);
-//        mapPanel.setLayout(new GridLayout(map.getWidth(), map.getHeight()));
-//        add(mapPanel);
-//        mapPanel.setBounds((int)((Config.screenSize.getWidth() - Config.screenSize.getHeight()) / 2), 0, (int)Config.screenSize.getHeight(), (int)Config.screenSize.getHeight());
-//        mapPanel.setBackground(Color.BLACK);
-//
-//        showMap(map);
-
-//        float[][] mapGrid = perlinNoiseMap;
-//        for (int x = 0; x < map.getWidth(); x++) {
-//            for (int y = 0; y < map.getHeight(); y++) {
-//                JPanel tile = new JPanel();
-////                tile.setSize(new Dimension(5,5));
-//                int value = (int)(mapGrid[x][y] * 255);
-//                Color color = new Color(value, value, value);
-//                tile.setBackground(color);
-//                mainPanel.add(tile);
-//            }
-//        }
-
-
-
-        setVisible(true);
+        cardLayout.show(mainPanel, "gamePanel"); // Panel to show at start
     }
 
     // TODO CLEAN THIS UP
@@ -56,10 +31,10 @@ public class GameFrame extends JFrame implements WindowListener {
         mainPanel.add(startPanel, "startPanel");
 
         // Create the map
-        FloatMap floatMap = new FloatMap(300, 300, "map100x100");
+        FloatMap floatMap = new FloatMap(100, 100, "map100x100");
         MapGenerator mapGenerator = new MapGenerator();
 //        TileMap tileMap = mapGenerator.generateRandomMap(floatMap);
-        MapType mapType = MapType.RIVERS2; // The type of map to be created
+        MapType mapType = MapType.TEST; // The type of map to be created
         // Assign the probability value for each TileType depending on the map theme
         float currentValue = 0;
         for (Map.Entry<TileType, Integer> entry : mapType.getMapConfiguration().getTitleDistribution().entrySet()) {
@@ -73,7 +48,7 @@ public class GameFrame extends JFrame implements WindowListener {
 //        TileType.WATER.setLowerBound(0.5f);
 //        TileType.WATER.setUpperBound(1f);
         MapConfiguration mapConfiguration = mapType.getMapConfiguration();
-        GenerationAlgo generationAlgo = mapConfiguration.getMapGeneratorAlgo();
+        GenerationAlgos generationAlgo = mapConfiguration.getMapGeneratorAlgo();
         int iterations = mapConfiguration.getIterations();
         TileMap tileMap = null;
         switch (generationAlgo) {
@@ -86,23 +61,24 @@ public class GameFrame extends JFrame implements WindowListener {
             case CELLULAR_AUTOMATA_SMOOTH -> {
                 tileMap = mapGenerator.generateCellularSmoothMap(floatMap, iterations);
             }
-            case PERLINNOISE -> {
+            case PERLIN_NOISE -> {
 
             }
             default -> {
 
             }
         }
-//        TileMap tileMap = mapGenerator.generateCellularMap(floatMap, 10);
 
+        System.out.println("Done generating map");
 
-//        floatMap = mapGenerator.generatePerlinNoiseMap(floatMap, 3);
         if (tileMap == null) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Failed to generate map");
         }
 
         GamePanel gamePanel = new GamePanel(tileMap, floatMap);
+        System.out.println(mainPanel.getWidth() + " " + mainPanel.getHeight());
         mainPanel.add(gamePanel, "gamePanel");
+        System.out.println("GamePanel width x height:" + gamePanel.getMapPanel().getWidth() + " x " + gamePanel.getMapPanel().getHeight());
     }
 
     @Override

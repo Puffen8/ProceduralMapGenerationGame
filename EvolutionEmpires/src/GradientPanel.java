@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 
-// Make this handle more than 2 colors
+// TODO: Make this handle more than 2 colors??
 public class GradientPanel extends JPanel {
     private Color color1;
     private Color color2;
