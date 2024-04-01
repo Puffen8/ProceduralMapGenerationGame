@@ -12,6 +12,22 @@ public class GameViewer {
 
         });
     }
+    public void displayStartPanel() {
+        gameFrame.createStartPanel();
+        repaint();
+    }
+
+    public void displayGamePanel(TileMap tileMap) {
+        gameFrame.createGamePanel(tileMap);
+        repaint();
+    }
+    public void repaint() {
+        SwingUtilities.invokeLater(() -> {
+            gameFrame.revalidate();
+            gameFrame.repaint();
+        });
+
+    }
 }
 
 

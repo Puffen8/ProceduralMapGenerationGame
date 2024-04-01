@@ -1,9 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class GamePanel extends JPanel {
+public class GameViewPanel extends JPanel {
     private TileMap tileMap;
-    private FloatMap floatMap;
     private JPanel northPanel;
     private JPanel southPanel;
     private JPanel westPanel;
@@ -11,10 +10,9 @@ public class GamePanel extends JPanel {
     private JPanel centerPanel;
     private JPanel mapPanel;
 
-    public GamePanel(TileMap tileMap, FloatMap floatMap) {
+    public GameViewPanel(TileMap tileMap) {
         super(true);
         this.tileMap = tileMap;
-        this.floatMap = floatMap;
 
         BorderLayout borderLayout = new BorderLayout();
         setLayout(borderLayout);
@@ -106,35 +104,12 @@ public class GamePanel extends JPanel {
         }
     }
 
-    public void showMapBW() {
-        int width = floatMap.getWidth();
-        int height = floatMap.getHeight();
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
-                JPanel tilePanel = new JPanel();
-                float tileValue = floatMap.getTileValueAt(x, y);
-                int colorValue = (int)(tileValue * 256);
-                Color color = new Color(colorValue, colorValue, colorValue);
-                tilePanel.setBackground(color);
-                mapPanel.add(tilePanel);
-            }
-        }
-    }
-
     public TileMap getTileMap() {
         return tileMap;
     }
 
     public void setTileMap(TileMap tileMap) {
         this.tileMap = tileMap;
-    }
-
-    public FloatMap getFloatMap() {
-        return floatMap;
-    }
-
-    public void setFloatMap(FloatMap floatMap) {
-        this.floatMap = floatMap;
     }
 
     public JPanel getNorthPanel() {

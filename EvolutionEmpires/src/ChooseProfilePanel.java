@@ -6,8 +6,8 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 import java.awt.*;
 
-public class StartPanel extends JPanel {
-    public StartPanel() {
+public class ChooseProfilePanel extends JPanel {
+    public ChooseProfilePanel() {
         super(true);
         BorderLayout borderLayout = new BorderLayout();
         setLayout(borderLayout);
