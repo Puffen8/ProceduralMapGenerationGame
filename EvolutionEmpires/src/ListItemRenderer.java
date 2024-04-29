@@ -8,7 +8,7 @@ public class ListItemRenderer extends DefaultListCellRenderer {
         if (component instanceof JComponent) {
             ((JComponent) component).setPreferredSize(new Dimension(100, 30));
         }
-        component.setFont(Config.listItemFont);
+        component.setFont(Config.LIST_ITEM_FONT);
         return component;
     }
 }

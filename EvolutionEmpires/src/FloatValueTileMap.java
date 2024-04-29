@@ -1,11 +1,11 @@
-public class FloatMap {
+public class FloatValueTileMap {
     private float[][] grid;
     private int width;
     private int height;
     private int size;
     private String name;
 
-    public FloatMap(int width, int height, String name) {
+    public FloatValueTileMap(int width, int height, String name) {
         this.width = width;
         this.height = height;
         this.name = name;

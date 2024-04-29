@@ -1,15 +1,24 @@
 import java.util.HashMap;
 import java.util.Map;
 
+// TODO: Make this class use a builder for partial initialization of a gameConfiguration object
 public class MapConfiguration {
     private Map<TileType, Integer> titleDistribution = new HashMap<>();
     private int iterations;
-    private GenerationAlgos mapGeneratorAlgo;
+    private GenerationAlgo mapGeneratorAlgo;
 
-    public MapConfiguration(Map<TileType, Integer> titleDistribution, int iterations, GenerationAlgos mapGeneratorAlgo) {
+    public MapConfiguration(Map<TileType, Integer> titleDistribution, int iterations, GenerationAlgo mapGeneratorAlgo) {
         this.titleDistribution = titleDistribution;
         this.iterations = iterations;
         this.mapGeneratorAlgo = mapGeneratorAlgo;
+    }
+
+    // TODO: MOVE THSES TO MAPTYPE CLASS?
+    public static Map<TileType, Integer> createDefaultTileDistributionMap() {
+        return new HashMap<>() {{
+            put(TileType.GRASS, 50);
+            put(TileType.WATER, 50);
+        }};
     }
 
     public static Map<TileType, Integer> createIslandsTileDistributionMap() {
@@ -101,11 +110,11 @@ public class MapConfiguration {
         this.iterations = iterations;
     }
 
-    public GenerationAlgos getMapGeneratorAlgo() {
+    public GenerationAlgo getMapGeneratorAlgo() {
         return mapGeneratorAlgo;
     }
 
-    public void setMapGeneratorAlgo(GenerationAlgos mapGeneratorAlgo) {
+    public void setMapGeneratorAlgo(GenerationAlgo mapGeneratorAlgo) {
         this.mapGeneratorAlgo = mapGeneratorAlgo;
     }
 }

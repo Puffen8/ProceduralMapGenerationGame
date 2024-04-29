@@ -7,26 +7,19 @@ public class GameViewer {
         this.gameFrame = new GameFrame();
     }
     public void initGraphics() {
-        SwingUtilities.invokeLater(() -> {
+//        SwingUtilities.invokeLater(() -> {
             gameFrame.setVisible(true);
 
-        });
-    }
-    public void displayStartPanel() {
-        gameFrame.createStartPanel();
-        repaint();
+//        });
     }
 
-    public void displayGamePanel(TileMap tileMap) {
-        gameFrame.createGamePanel(tileMap);
-        repaint();
-    }
-    public void repaint() {
-        SwingUtilities.invokeLater(() -> {
-            gameFrame.revalidate();
-            gameFrame.repaint();
-        });
 
+    public GameFrame getGameFrame() {
+        return gameFrame;
+    }
+
+    public void setGameFrame(GameFrame gameFrame) {
+        this.gameFrame = gameFrame;
     }
 }
 

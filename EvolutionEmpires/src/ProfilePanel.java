@@ -6,8 +6,8 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 import java.awt.*;
 
-public class ChooseProfilePanel extends JPanel {
-    public ChooseProfilePanel() {
+public class ProfilePanel extends JPanel {
+    public ProfilePanel() {
         super(true);
         BorderLayout borderLayout = new BorderLayout();
         setLayout(borderLayout);
@@ -30,11 +30,6 @@ public class ChooseProfilePanel extends JPanel {
         // Add profile list
         centerPanel.add(createProfileList(), BorderLayout.CENTER);
 
-        // Add chosen profile panel
-        centerPanel.add(createChosenProfile(), BorderLayout.CENTER);
-
-
-
     }
 
     // TODO: Make this TitleText a separate class
@@ -50,12 +45,12 @@ public class ChooseProfilePanel extends JPanel {
         // Style
         StyledDocument styledDoc = titlePane.getStyledDocument();
         Style style = styledDoc.addStyle("HeaderStyle", null);
-        StyleConstants.setFontFamily(style, Config.mainFontName);
-        StyleConstants.setFontSize(style, Config.headerFontSize);
-        titlePane.setFont(Config.mainFont);
+        StyleConstants.setFontFamily(style, Config.MAIN_FONT_NAME);
+        StyleConstants.setFontSize(style, Config.HEADER_FONT_SIZE);
+        titlePane.setFont(Config.MAIN_FONT);
         titlePane.setOpaque(false); // Transparent background
         try {
-            styledDoc.insertString(styledDoc.getLength(), Config.gameTitle, style);
+            styledDoc.insertString(styledDoc.getLength(), Config.GAME_TITLE, style);
         } catch (BadLocationException e) {
             e.printStackTrace();
         }
@@ -73,12 +68,12 @@ public class ChooseProfilePanel extends JPanel {
         listModel.addElement("PlayerProfile3");
         // Create a JList with the data
         JList<String> guiList = new JList<>(listModel);
-        guiList.setCellRenderer(new ListItemRenderer()); // Implement MyListCellRenderer to customize the appearance
+        guiList.setCellRenderer(new ListItemRenderer());
 
         // Create a JScrollPane and set its border
         JScrollPane scrollPane = new JScrollPane(guiList);
         scrollPane.setLayout(new ScrollPaneLayout()); // Set your layout manager
-        scrollPane.setBorder(new LineBorder(Config.themeColor2, 2)); // Set the border color and thickness
+        scrollPane.setBorder(new LineBorder(Config.THEME_COLOR_2, 2)); // Set the border color and thickness
         scrollPane.setPreferredSize(new Dimension(300, 200));
 
 
@@ -88,9 +83,4 @@ public class ChooseProfilePanel extends JPanel {
         return profileListPane;
     }
 
-    public JPanel createChosenProfile() {
-        JPanel profilePane = new JPanel();
-
-        return profilePane;
-    }
 }

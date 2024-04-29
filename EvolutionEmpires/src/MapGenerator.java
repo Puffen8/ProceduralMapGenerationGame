@@ -6,21 +6,40 @@ public class MapGenerator {
         this.random = new Random();
     }
 
-
-    public TileMap generateRandomMap(FloatMap floatMap) {
-        TileMap tileMap = new TileMap(floatMap.getWidth(), floatMap.getHeight(), floatMap.getName());
+    public TileMap FloatMapToTileMap(FloatValueTileMap floatValueTileMap, MapType mapType) {
+        TileMap tileMap = new TileMap(floatValueTileMap.getWidth(), floatValueTileMap.getHeight(), floatValueTileMap.getName(), mapType);
         TileType[][] mapGrid = tileMap.getGrid();
-        for (int i = 0; i < floatMap.getWidth(); i++) {
-            for (int j = 0; j < floatMap.getHeight(); j++) {
+        for (int i = 0; i < floatValueTileMap.getWidth(); i++) {
+            for (int j = 0; j < floatValueTileMap.getHeight(); j++) {
+                mapGrid[i][j] = TileType.getTileType(floatValueTileMap.getTileValueAt(i, j));
+            }
+        }
+        return tileMap;
+    }
+    public FloatValueTileMap generateRandomValueFloatMap(FloatValueTileMap floatValueTileMap) {
+        float[][] mapGrid = floatValueTileMap.getGrid();
+        for (int i = 0; i < floatValueTileMap.getWidth(); i++) {
+            for (int j = 0; j < floatValueTileMap.getHeight(); j++) {
+                mapGrid[i][j] = random.nextFloat();
+            }
+        }
+        return floatValueTileMap;
+    }
+
+    public TileMap generateRandomMap(FloatValueTileMap floatValueTileMap) {
+        TileMap tileMap = new TileMap(floatValueTileMap.getWidth(), floatValueTileMap.getHeight(), floatValueTileMap.getName(), null); // TODO: Fix last parameter
+        TileType[][] mapGrid = tileMap.getGrid();
+        for (int i = 0; i < floatValueTileMap.getWidth(); i++) {
+            for (int j = 0; j < floatValueTileMap.getHeight(); j++) {
                 mapGrid[i][j] = TileType.getTileType(random.nextFloat());
             }
         }
         return tileMap;
     }
 
-    public TileMap generateCellularNormalMap(FloatMap floatMap, int iterations) {
+    public TileMap generateCellularNormalMap(FloatValueTileMap floatValueTileMap, int iterations) {
         // Create initial random map
-        TileMap tileMap = generateRandomMap(floatMap);
+        TileMap tileMap = generateRandomMap(floatValueTileMap);
         if (iterations <= 0) {
             return tileMap;
         }
@@ -61,9 +80,9 @@ public class MapGenerator {
         return newTileMap;
     }
 
-    public TileMap generateCellularSmoothMap(FloatMap floatMap, int iterations) {
+    public TileMap generateCellularSmoothMap(FloatValueTileMap floatValueTileMap, int iterations) {
         // Create initial random map
-        TileMap tileMap = generateRandomMap(floatMap);
+        TileMap tileMap = generateRandomMap(floatValueTileMap);
         if (iterations <= 0) {
             return tileMap;
         }
@@ -102,6 +121,9 @@ public class MapGenerator {
         }
         return newTileMap;
     }
+
+// OLD FUNCTIONS TO REVISIT AND SEE IF ANYTHING SHOULD BE SAVED ---------------
+
 
 
     // Working, and creates an island with water around use 10-30 iterations

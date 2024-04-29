@@ -1,19 +1,25 @@
+import java.util.Map;
+
 public class TileMap {
     private TileType[][] grid;
     private int width;
     private int height;
     private int size;
     private String name;
+    private MapType mapType;
 
-    public TileMap(int width, int height, String name) {
+    public TileMap(int width, int height, String name, MapType mapType) {
         this.width = width;
         this.height = height;
         this.name = name;
         this.size = width * height;
         this.grid = new TileType[width][height];
+        this.mapType = mapType;
+
+
     }
     public TileMap copy() {
-        return new TileMap(this.getWidth(), this.getHeight(), this.getName());
+        return new TileMap(this.getWidth(), this.getHeight(), this.getName(), this.getMapType());
     }
     public TileType getTileAt(int x, int y) {
         return grid[x][y];
@@ -60,5 +66,13 @@ public class TileMap {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public MapType getMapType() {
+        return mapType;
+    }
+
+    public void setMapType(MapType mapType) {
+        this.mapType = mapType;
     }
 }

@@ -14,16 +14,15 @@ public class MapPanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        int tileSize = 20; // Adjust the size of each square as needed
+        final int TILE_SIZE = 2; // Adjust the size of each square as needed
         int width = tileMap.getWidth();
         int height = tileMap.getHeight();
-        System.out.println("Drawing Map");
+        System.out.println("Generating Map");
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 TileType tile = tileMap.getTileAt(x, y);
-                System.out.println(x + " " + y + " " + tile.getColor());
                 g.setColor(tile.getColor());
-                g.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
+                g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
             }
         }
     }

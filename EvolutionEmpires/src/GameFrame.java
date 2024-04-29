@@ -5,29 +5,35 @@ import java.awt.event.WindowListener;
 
 public class GameFrame extends JFrame implements WindowListener {
     private JPanel mainPanel;
+    private CardLayout cardLayout;
     public GameFrame() {
-        setSize(Config.screenSize.width, Config.screenSize.height);
+        setSize(Config.SCREEN_SIZE.width, Config.SCREEN_SIZE.height);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setTitle(Config.gameTitle);
+        setTitle(Config.GAME_TITLE);
 
         this.mainPanel = new JPanel();
-
-        // Set up the Card Layout
-        CardLayout cardLayout = new CardLayout();
-        mainPanel.setLayout(cardLayout);
         add(mainPanel);
 
-        cardLayout.show(mainPanel, "startPanel"); // Panel to show at start
+        // Set up the Card Layout for the mainPanel of the GameFrame
+        this.cardLayout = new CardLayout();
+        mainPanel.setLayout(cardLayout);
+
     }
 
     public void createStartPanel() {
-        ChooseProfilePanel startPanel = new ChooseProfilePanel();
+        ProfilePanel startPanel = new ProfilePanel();
         mainPanel.add(startPanel, "startPanel");
     }
 
     public void createGamePanel (TileMap tileMap) {
-        GameViewPanel gamePanel = new GameViewPanel(tileMap);
+        GamePanel gamePanel = new GamePanel(tileMap);
         mainPanel.add(gamePanel, "gamePanel");
+    }
+
+    public void switchToPanel(String panel) {
+        cardLayout.show(mainPanel, panel);
+        revalidate();
+        repaint();
     }
 
     @Override

@@ -1,3 +1,3 @@
-public enum GenerationAlgos {
+public enum GenerationAlgo {
     RANDOM_NOISE, CELLULAR_AUTOMATA_NORMAL, CELLULAR_AUTOMATA_SMOOTH, PERLIN_NOISE;
 }

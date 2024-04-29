@@ -1,5 +1,6 @@
 /*
- * Works as adapter between logic and graphics
+ * This is the highest class in the hierarchy.
+ * It works as adapter between logic and graphics.
  */
 public class GameController {
     private GameManager gameManager;
@@ -11,15 +12,17 @@ public class GameController {
 
     public void init() {
         gameViewer.initGraphics();
+
+        gameViewer.getGameFrame().createStartPanel();
+
+        TileMap tileMap = gameManager.createMap();
+        gameViewer.getGameFrame().createGamePanel(tileMap);
+
     }
 
     public void startGame() {
-        gameViewer.displayStartPanel();
-    }
-    // Starts the game after the start panel
-    public void runGame() {
-        TileMap tileMap = gameManager.createMap();
-        gameViewer.displayGamePanel(tileMap);
+        // Panel to show at the start of the game
+        gameViewer.getGameFrame().switchToPanel("gamePanel");
     }
 
 
