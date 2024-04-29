@@ -36,10 +36,12 @@ public class GamePanel extends JPanel {
         westPanel.setPreferredSize(new Dimension(100, 0));
         eastPanel.setPreferredSize(new Dimension(100, 0));
 
+        // Debugging ---------------------------
         northPanel.setBackground(Color.RED);
-        southPanel.setBackground(Color.GREEN);
+        southPanel.setBackground(Color.RED);
         westPanel.setBackground(Color.YELLOW);
         eastPanel.setBackground(Color.BLUE);
+        // -------------------------------------
 
 
         centerPanel.setBackground(Color.BLACK);

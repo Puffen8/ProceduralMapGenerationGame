@@ -1,5 +1,5 @@
 /*
- * This is the highest class in the hierarchy.
+ * This is the highest class in the class hierarchy.
  * It works as adapter between logic and graphics.
  */
 public class GameController {
@@ -22,7 +22,7 @@ public class GameController {
 
     public void startGame() {
         // Panel to show at the start of the game
-        gameViewer.getGameFrame().switchToPanel("gamePanel");
+        gameViewer.getGameFrame().switchToPanel("startPanel");
     }
 
 

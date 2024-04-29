@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
-public class GameFrame extends JFrame implements WindowListener {
+public class GameFrame extends JFrame implements WindowListener, Observer {
     private JPanel mainPanel;
     private CardLayout cardLayout;
     public GameFrame() {
@@ -22,6 +22,7 @@ public class GameFrame extends JFrame implements WindowListener {
 
     public void createStartPanel() {
         ProfilePanel startPanel = new ProfilePanel();
+        startPanel.addObserver(this);
         mainPanel.add(startPanel, "startPanel");
     }
 
@@ -34,6 +35,10 @@ public class GameFrame extends JFrame implements WindowListener {
         cardLayout.show(mainPanel, panel);
         revalidate();
         repaint();
+    }
+    @Override
+    public void update() {
+        switchToPanel("gamePanel");
     }
 
     @Override
